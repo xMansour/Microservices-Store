@@ -12,7 +12,12 @@ class TestcontainersConfiguration {
     @Bean
     @ServiceConnection
     MongoDBContainer mongoDbContainer() {
-        return new MongoDBContainer(DockerImageName.parse("mongo:latest"));
+        return new MongoDBContainer(DockerImageName.parse("mongodb/mongodb-community-server:latest"));
     }
+
+//    @DynamicPropertySource
+//     void setProperties(DynamicPropertyRegistry dynamicPropertyRegistry) {
+//        dynamicPropertyRegistry.add("spring.data.mongodb.uri", mongoDbContainer().getReplicaSetUrl());
+//    }
 
 }
