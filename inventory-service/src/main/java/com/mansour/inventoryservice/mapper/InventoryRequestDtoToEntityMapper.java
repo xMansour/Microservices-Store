@@ -1,6 +1,6 @@
 package com.mansour.inventoryservice.mapper;
 
-import com.mansour.inventoryservice.dto.InventoryRequestDto;
+import com.mansour.inventoryservice.dto.inventory.InventoryRequestDto;
 import com.mansour.inventoryservice.entity.Inventory;
 import org.springframework.stereotype.Component;
 
@@ -14,5 +14,11 @@ public class InventoryRequestDtoToEntityMapper implements Function<InventoryRequ
                 .code(inventoryRequestDto.getCode())
                 .quantity(inventoryRequestDto.getQuantity())
                 .build();
+    }
+
+    public Inventory updateEntity(Inventory inventory, InventoryRequestDto inventoryRequestDto) {
+        inventory.setCode(inventoryRequestDto.getCode());
+        inventory.setQuantity(inventoryRequestDto.getQuantity());
+        return inventory;
     }
 }

@@ -1,10 +1,12 @@
 package com.mansour.inventoryservice.mapper;
 
-import com.mansour.inventoryservice.dto.InventoryResponseDto;
+import com.mansour.inventoryservice.dto.inventory.InventoryResponseDto;
 import com.mansour.inventoryservice.entity.Inventory;
+import org.springframework.stereotype.Component;
 
 import java.util.function.Function;
 
+@Component
 public class InventoryEntityToResponseDtoMapper implements Function<Inventory, InventoryResponseDto> {
     @Override
     public InventoryResponseDto apply(Inventory inventory) {

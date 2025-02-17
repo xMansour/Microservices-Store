@@ -1,4 +1,4 @@
-package com.mansour.inventoryservice.dto;
+package com.mansour.inventoryservice.dto.inventory;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,8 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class InventoryResponseDto {
-    private Long id;
+public class InventoryRequestDto {
     private String code;
     private Long quantity;
 }
