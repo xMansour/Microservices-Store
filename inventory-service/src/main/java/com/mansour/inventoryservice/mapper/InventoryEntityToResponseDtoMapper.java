@@ -14,6 +14,7 @@ public class InventoryEntityToResponseDtoMapper implements Function<Inventory, I
                 .id(inventory.getId())
                 .code(inventory.getCode())
                 .quantity(inventory.getQuantity())
+                .isInStock(inventory.getQuantity() > 0)
                 .build();
     }
 }

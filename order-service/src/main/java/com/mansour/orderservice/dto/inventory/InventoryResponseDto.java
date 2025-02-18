@@ -1,4 +1,4 @@
-package com.mansour.inventoryservice.dto.inventory;
+package com.mansour.orderservice.dto.inventory;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

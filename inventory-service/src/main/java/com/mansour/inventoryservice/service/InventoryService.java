@@ -64,4 +64,10 @@ public class InventoryService implements BaseService<InventoryRequestDto, Invent
         Inventory inventory = inventoryRepository.findByCode(code).orElseThrow(() -> new InventoryNotFoundException(HttpStatusMessageKey.INVENTORY_NOT_FOUND));
         return inventory.getQuantity() > 0;
     }
+
+    public List<InventoryResponseDto> isInStock(List<String> codes) {
+        log.info("InventoryService#isInStock codes={}", codes);
+        List<Inventory> inventories = inventoryRepository.findByCodeIn(codes);
+        return inventories.stream().map(inventoryEntityToResponseDtoMapper).toList();
+    }
 }
