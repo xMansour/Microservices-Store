@@ -38,4 +38,17 @@ public class GlobalExceptionHandler {
                 ));
 
     }
+
+    @ExceptionHandler(InsufficientInventoryException.class)
+    public ResponseEntity<ApiResponse<Object>> handleInsufficientInventoryException(InsufficientInventoryException exception, HttpServletRequest request) {
+        log.error("GlobalExceptionHandler#handleInsufficientInventoryException InsufficientInventoryException: {}", exception.getMessage());
+        return ResponseEntity
+                .status(exception.httpStatusCode)
+                .body(ResponseUtil.error(
+                        exception.getMessage(),
+                        exception.getMessage(),
+                        exception.httpStatusCode.value(),
+                        request.getRequestURI()
+                ));
+    }
 }

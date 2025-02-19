@@ -43,7 +43,10 @@ public class OrderService implements BaseService<OrderRequestDto, OrderResponseD
                 .retrieve()
                 .bodyToMono(responseType)
                 .block();
-        boolean isInStock = response != null && response.isSuccess();
+        boolean isInStock = response != null
+                && response.isSuccess()
+                && response.getData().size() == order.getOrderItems().size()
+                && response.getData().stream().allMatch(InventoryResponseDto::getIsInStock);
         if (!isInStock)
             throw new InsufficientInventoryException(HttpStatusMessageKey.INSUFFICIENT_INVENTORY);
         return orderEntityToResponseDtoMapper.apply(order);
