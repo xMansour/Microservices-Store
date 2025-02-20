@@ -27,7 +27,7 @@ public class OrderService implements BaseService<OrderRequestDto, OrderResponseD
     private final OrderRepository orderRepository;
     private final OrderRequestDtoToEntityMapper orderRequestDtoToEntityMapper;
     private final OrderEntityToResponseDtoMapper orderEntityToResponseDtoMapper;
-    private final WebClient webClient;
+    private final WebClient.Builder webClientBuilder;
 
     @Override
     public OrderResponseDto create(OrderRequestDto orderRequestDto) {
@@ -38,8 +38,8 @@ public class OrderService implements BaseService<OrderRequestDto, OrderResponseD
         ParameterizedTypeReference<ApiResponse<List<InventoryResponseDto>>> responseType =
                 new ParameterizedTypeReference<>() {
                 };
-        ApiResponse<List<InventoryResponseDto>> response = webClient.get()
-                .uri("http://localhost:8082/api/v1/inventories", uriBuilder -> uriBuilder.queryParam("codes", orderItemsCodes.toArray()).build())
+        ApiResponse<List<InventoryResponseDto>> response = webClientBuilder.build().get()
+                .uri("http://inventory-service/api/v1/inventories", uriBuilder -> uriBuilder.queryParam("codes", orderItemsCodes.toArray()).build())
                 .retrieve()
                 .bodyToMono(responseType)
                 .block();
